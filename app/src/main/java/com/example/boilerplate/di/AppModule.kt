@@ -37,5 +37,4 @@ object AppModule {
     @Provides
     fun itemListViewModel(itemRepository: ItemRepository): ItemListViewModel =
         ItemListViewModel(itemRepository)
-
 }

@@ -9,13 +9,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class CategoryViewModel @Inject constructor(private val itemRepository: ItemRepository) : ViewModel() {
+class CategoryViewModel @Inject constructor(private val itemRepository: ItemRepository) :
+    ViewModel() {
 
     private val _items: MutableLiveData<List<Item>> = MutableLiveData()
 
     val items: LiveData<List<Item>> get() = _items
 
     init {
-
     }
 }

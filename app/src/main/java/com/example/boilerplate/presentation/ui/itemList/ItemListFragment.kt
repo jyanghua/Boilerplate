@@ -1,13 +1,11 @@
 package com.example.boilerplate.presentation.ui.itemList
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.boilerplate.R
@@ -43,7 +41,8 @@ class ItemListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_item_list, container, false)
@@ -76,7 +75,7 @@ class ItemListFragment : Fragment() {
         // Add binding.vm and any onClick observers
         viewModel.selectedCategory.observe(
             viewLifecycleOwner,
-            { viewModel.filter() }
+            { viewModel.filterData() }
         )
 
         viewModel.filteredItems.observe(
@@ -84,9 +83,6 @@ class ItemListFragment : Fragment() {
             { itemList ->
                 if (itemList != null) {
                     itemListAdapter.submitList(itemList.toMutableList())
-//                    itemListAdapter.notifyDataSetChanged()
-                } else {
-                    Log.d("ASDASDASD", "WOW")
                 }
             }
         )
@@ -94,7 +90,9 @@ class ItemListFragment : Fragment() {
         viewModel.listCategories.observe(
             viewLifecycleOwner,
             { categories ->
-                categoryListAdapter.updateCategoryList(categories)
+                if (categories != null) {
+                    categoryListAdapter.updateCategoryList(categories)
+                }
             }
         )
 

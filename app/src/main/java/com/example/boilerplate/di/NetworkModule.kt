@@ -17,7 +17,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideItemMapper(): ItemDtoMapper{
+    fun provideItemMapper(): ItemDtoMapper {
         return ItemDtoMapper()
     }
 

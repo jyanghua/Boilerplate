@@ -10,7 +10,6 @@ import com.example.boilerplate.domain.model.Category
 import com.example.boilerplate.domain.model.Item
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,14 +30,10 @@ class ItemListViewModel @Inject constructor(private val itemRepository: ItemRepo
         try {
             viewModelScope.launch(IO) {
                 isLoading.postValue(true)
-                _groupedItems.postValue(itemRepository.getItems().also {
-                    _categories.postValue(it.keys.map { category ->
-                        Category(categoryName = category)
-                    }.sortedBy { category -> category.categoryName })
-                })
+                organizeData(itemRepository.getItems())
             }.invokeOnCompletion {
                 selectedCategory.postValue(_categories.value?.first()?.categoryName)
-                filter()
+                filterData()
                 isLoading.postValue(false)
             }
         } catch (e: Exception) {
@@ -46,7 +41,19 @@ class ItemListViewModel @Inject constructor(private val itemRepository: ItemRepo
         }
     }
 
-    fun filter() {
+    private fun organizeData(items: Map<String, List<Item>>) {
+        _groupedItems.postValue(
+            items.also {
+                _categories.postValue(
+                    it.keys.map { category ->
+                        Category(categoryName = category)
+                    }.sortedBy { category -> category.categoryName }
+                )
+            }
+        )
+    }
+
+    fun filterData() {
         _filteredItems.postValue(_groupedItems.value?.get(selectedCategory.value))
     }
 

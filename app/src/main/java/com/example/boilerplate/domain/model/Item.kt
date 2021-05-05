@@ -6,9 +6,9 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Item(val id: Int? = null, val listId: Int? = null, val name: String? = null) : Parcelable {
     override fun equals(other: Any?): Boolean {
-        if(javaClass != other?.javaClass) return false
+        if (javaClass != other?.javaClass) return false
         other as Item
-        if(id != other.id || listId != other.listId || name != other.name) return false
+        if (id != other.id || listId != other.listId || name != other.name) return false
         return true
     }
 

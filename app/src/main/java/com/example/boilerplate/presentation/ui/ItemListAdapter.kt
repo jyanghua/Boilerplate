@@ -37,5 +37,4 @@ class ItemListAdapter : ListAdapter<Item, ItemListAdapter.ViewHolder>(ItemDiffCa
         override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean =
             oldItem == newItem
     }
-
 }

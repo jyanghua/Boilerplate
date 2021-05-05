@@ -24,6 +24,7 @@ The purpose of this project is mainly to practice and try different ideas and ap
 - [Coroutines](https://developer.android.com/kotlin/coroutines) - Concurrency design pattern for asynchronous code
 - [Retrofit](https://square.github.io/retrofit/) - HTTP API client for Android
 - [GSON](https://github.com/google/gson) - Convert Java objects into their JSON representation and vice-versa
+- [ktlint](https://github.com/pinterest/ktlint) - Kotlin linter and built-in formatter
 
 ## License
 

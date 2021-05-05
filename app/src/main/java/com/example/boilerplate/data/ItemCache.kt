@@ -10,7 +10,7 @@ interface ItemCache {
     fun loadCategories(): List<Category>
 }
 
-class ItemTempCache: ItemCache {
+class ItemTempCache : ItemCache {
     private val groupedItemsMap = hashMapOf<Int?, List<Item>>()
     private val categoriesList = mutableListOf<Category>()
 
